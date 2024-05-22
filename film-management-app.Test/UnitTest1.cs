@@ -1,11 +1,10 @@
-namespace film_management_app.Test
-{
-    public class UnitTest1
-    {
-        [Fact]
-        public void Test1()
-        {
+namespace film_management_app.test;
 
-        }
+public class UnitTest1
+{
+    [Fact]
+    public void Test1()
+    {
+
     }
 }
