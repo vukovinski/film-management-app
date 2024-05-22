@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("film-management-app.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+13c7765cc1d357224f274417e7bb2702d7081e9a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+981e3bb7265f06e4c4f3ee9976f12dd3e1fa96d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("film-management-app.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("film-management-app.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

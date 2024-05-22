@@ -39,6 +39,9 @@ public class Film
     public List<FilmStar> Actors { get; set; } = new();
     public bool HasBeenFilmed { get; set; } = false;
 
+    public DateTime PlannedShootingStartDate { get; set; }
+    public DateTime PlannedShootingEndDate { get; set; }
+
     public bool IsShootable => !HasBeenFilmed && !IsOverBudget;
     public bool IsOverBudget => Actors.Select(a => a.Fee).Sum() > Budget;
 }

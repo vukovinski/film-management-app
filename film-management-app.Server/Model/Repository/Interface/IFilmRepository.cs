@@ -12,6 +12,7 @@
         IEnumerable<Film> GetByDirector(User user);
         IEnumerable<Film> GetByGenre(params int[] genreIds);
         IEnumerable<Film> GetByGenre(params Genre[] genres);
+        IEnumerable<Film> GetByShootingDate(DateTime from, DateTime to);
 
         int Update(Film film);
         int CreateNew(Film film);

@@ -1,4 +1,5 @@
-﻿namespace film_management_app.Server
+﻿
+namespace film_management_app.Server
 {
     public class FilmRepository : IFilmRepository
     {
@@ -60,6 +61,11 @@
         public Film GetById(int id)
         {
             return _context.Films.Where(f => f.Id == id).First();
+        }
+
+        public IEnumerable<Film> GetByShootingDate(DateTime from, DateTime to)
+        {
+            return _context.Films.Where(f => f.PlannedShootingStartDate > from && f.PlannedShootingEndDate <= to);
         }
 
         public IEnumerable<Film> GetByTitle(string title)
