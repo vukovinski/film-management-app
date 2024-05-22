@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace film_management_app.Server;
 
@@ -8,7 +9,23 @@ public class FilmManagementDbContext : DbContext
     public DbSet<Genre> Genres { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<FilmStar> FilmStars { get; set; }
-    public DbSet<FilmDirector> FilmDirectors { get; set;}
+    public DbSet<FilmDirector> FilmDirectors { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<FilmDirector>()
+            .HasKey(fd => new { fd.UserId, fd.FilmId });
+
+        modelBuilder.Entity<FilmStar>()
+            .HasKey(fs => new { fs.UserId, fs.FilmId });
+
+        base.OnModelCreating(modelBuilder);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite("Data Source=film-management-app.db");
+    }
 }
 
 public class Film
@@ -17,9 +34,9 @@ public class Film
     public string Title { get; set; }
     public string TagLine { get; set; }
     public decimal Budget { get; set; }
-    public List<Genre> Genres { get; set; }
+    public List<Genre> Genres { get; set; } = new();
     public FilmDirector Director { get; set; }
-    public List<FilmStar> Actors { get; set; }
+    public List<FilmStar> Actors { get; set; } = new();
     public bool HasBeenFilmed { get; set; } = false;
 
     public bool IsShootable => !HasBeenFilmed && !IsOverBudget;
@@ -45,6 +62,9 @@ public class FilmDirector
 {
     public int UserId { get; set; }
     public int FilmId { get; set; }
+
+    public User User { get; set; }
+    public Film Film { get; set; }
 }
 
 public class FilmStar
@@ -52,6 +72,9 @@ public class FilmStar
     public int UserId { get; set; }
     public int FilmId { get; set; }
     public decimal Fee { get; set; }
+
+    public User User { get; set; }
+    public Film Film { get; set; }
 }
 
 public class Genre
