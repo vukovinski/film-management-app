@@ -75,6 +75,7 @@ public class FilmStar
     public int UserId { get; set; }
     public int FilmId { get; set; }
     public decimal Fee { get; set; }
+    public bool AcceptedRole { get; set; }
 
     public User User { get; set; }
     public Film Film { get; set; }
