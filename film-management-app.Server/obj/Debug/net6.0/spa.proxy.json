@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:5173",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "N:\\Repo\\film-management-app\\film-management-app.Server\\..\\film-management-app.client",
+"MaxTimeoutInSeconds": "120"
+}
+}
