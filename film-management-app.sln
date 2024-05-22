@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "film-management-app.Server", "film-management-app.Server\film-management-app.Server.csproj", "{6880BB0B-7AC7-417C-8DFD-715FBA1690D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "film-management-app.Server", "film-management-app.Server\film-management-app.Server.csproj", "{6880BB0B-7AC7-417C-8DFD-715FBA1690D4}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "film-management-app.client", "film-management-app.client\film-management-app.client.esproj", "{F74CF0D9-6BC4-4B78-B083-76BFBBA128A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "film-management-app.Test", "film-management-app.Test\film-management-app.Test.csproj", "{17663B94-9C3B-436C-A506-F1B8FA4FE23D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{F74CF0D9-6BC4-4B78-B083-76BFBBA128A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F74CF0D9-6BC4-4B78-B083-76BFBBA128A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F74CF0D9-6BC4-4B78-B083-76BFBBA128A3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{17663B94-9C3B-436C-A506-F1B8FA4FE23D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17663B94-9C3B-436C-A506-F1B8FA4FE23D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17663B94-9C3B-436C-A506-F1B8FA4FE23D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17663B94-9C3B-436C-A506-F1B8FA4FE23D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
