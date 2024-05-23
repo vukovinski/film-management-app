@@ -55,6 +55,7 @@ public class User
     public string FullName { get; set; }
     public string Email { get; set; }
     public string? PasswordHash { get; set; }
+    public decimal? ExpectedFee { get; set; }
 
 
     public bool IsActor { get; set; } = false;

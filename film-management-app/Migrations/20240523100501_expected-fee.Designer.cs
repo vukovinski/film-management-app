@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using film_management_app.Server;
 
@@ -10,9 +11,10 @@ using film_management_app.Server;
 namespace film_management_app.Server.Migrations
 {
     [DbContext(typeof(FilmManagementDbContext))]
-    partial class FilmManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240523100501_expected-fee")]
+    partial class expectedfee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.30");
