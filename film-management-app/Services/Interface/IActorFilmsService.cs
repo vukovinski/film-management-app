@@ -2,7 +2,7 @@
 {
     public interface IActorFilmsService
     {
-        Film[] InvitedFilms();
+        Film[] InvitedFilms(User actor);
         void UpdateInformation(User actor);
     }
 }

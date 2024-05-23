@@ -7,6 +7,12 @@
         IEnumerable<User> GetByFilmId(int filmId);
         IEnumerable<User> GetByFullName(string fullName);
 
+        FilmStar GetFilmStarByEmail(string email);
+        FilmStar GetFilmStarByUserId(int userId);
+        FilmStar GetFilmStarByFilmIdAndUserId(int filmId, int userId);
+        IEnumerable<FilmStar> GetFilmStarByFilmId(int filmId);
+        IEnumerable<FilmStar> GetFilmStarByFullName(string fullName);
+
         int Update(User actor);
         int Update(FilmStar filmStar);
 

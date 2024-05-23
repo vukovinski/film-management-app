@@ -63,6 +63,11 @@ namespace film_management_app.Server
             return _context.Films.Where(f => f.Id == id).First();
         }
 
+        public IEnumerable<Film> GetByInvitedActor(User actor)
+        {
+            return _context.Films.Where(f => f.Actors.Any(a => a.UserId == actor.Id && !a.AcceptedRole));
+        }
+
         public IEnumerable<Film> GetByShootingDate(DateTime from, DateTime to)
         {
             return _context.Films.Where(f => f.PlannedShootingStartDate > from && f.PlannedShootingEndDate <= to);

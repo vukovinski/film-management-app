@@ -49,6 +49,31 @@
             return _context.FilmStars.Where(fs => fs.UserId == userId).Select(fs => fs.User).Single();
         }
 
+        public FilmStar GetFilmStarByEmail(string email)
+        {
+            return _context.FilmStars.Where(fs => fs.User.Email.Contains(email)).Single();
+        }
+
+        public IEnumerable<FilmStar> GetFilmStarByFilmId(int filmId)
+        {
+            return _context.FilmStars.Where(fs => fs.FilmId == filmId);
+        }
+
+        public FilmStar GetFilmStarByFilmIdAndUserId(int filmId, int userId)
+        {
+            return _context.FilmStars.Where(fs => fs.FilmId == filmId && fs.UserId == userId).Single();
+        }
+
+        public IEnumerable<FilmStar> GetFilmStarByFullName(string fullName)
+        {
+            return _context.FilmStars.Where(fs => fs.User.FullName.Contains(fullName));
+        }
+
+        public FilmStar GetFilmStarByUserId(int userId)
+        {
+            return _context.FilmStars.Where(fs => fs.UserId == userId).Single();
+        }
+
         public int Update(User actor)
         {
             _context.Update(actor);

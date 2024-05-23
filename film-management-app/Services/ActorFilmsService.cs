@@ -1,0 +1,24 @@
+﻿namespace film_management_app.Server
+{
+    public class ActorFilmsService : IActorFilmsService
+    {
+        private readonly IFilmRepository _filmRepository;
+        private readonly IUserRepository _userRepository;
+
+        public ActorFilmsService(IFilmRepository filmRepository, IUserRepository userRepository)
+        {
+            _filmRepository = filmRepository;
+            _userRepository = userRepository;
+        }
+
+        public Film[] InvitedFilms(User actor)
+        {
+            return _filmRepository.GetByInvitedActor(actor).ToArray();
+        }
+
+        public void UpdateInformation(User actor)
+        {
+            _userRepository.Update(actor);
+        }
+    }
+}

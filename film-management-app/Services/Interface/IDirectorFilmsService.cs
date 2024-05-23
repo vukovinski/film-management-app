@@ -12,8 +12,8 @@
             DateTime plannedShootingEnd
         );
 
-        Film[] MyFilms();
-
         void Edit(Film film);
+
+        Film[] MyFilms(User director);
     }
 }
