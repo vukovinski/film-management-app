@@ -21,6 +21,7 @@ public class AuthController : ControllerBase
 
     [AllowAnonymous]
     [HttpGet]
+    [Route("Login")]
     public IActionResult Login([FromQuery]string email, [FromQuery]string passwordHash)
     {
         var user = _userRepository.GetByEmail(email);
@@ -33,13 +34,13 @@ public class AuthController : ControllerBase
         return LoginUser(user);
     }
 
-    [Authorize]
+    [AllowAnonymous]
     [HttpGet]
+    [Route("Logout")]
     public IActionResult Logout()
     {
-        var anonymousUser = new ClaimsPrincipal();
-        SetPrincipal(anonymousUser);
-        return Ok();
+        SetPrincipal(new ClaimsPrincipal());
+        return Redirect("https://localhost:44414/");
     }
 
     #region helpers

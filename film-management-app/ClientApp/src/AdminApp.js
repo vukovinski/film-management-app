@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AppRoutes from './AppRoutes';
 import { Layout } from './components/Layout';
 import './custom.css';
+import { AdminHome } from './admin/AdminHome';
 
 export default class AdminApp extends Component {
   static displayName = AdminApp.name;
@@ -11,10 +11,7 @@ export default class AdminApp extends Component {
     return (
       <Layout>
         <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={index} {...rest} element={element} />;
-          })}
+          <Route index element={<AdminHome />} />
         </Routes>
       </Layout>
     );

@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-
 using System.Text;
+using film_management_app.Server;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +34,17 @@ builder.Services.AddCors(opt =>
         builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
     });
 });
+builder.Services.AddTransient((sp) => new FilmManagementDbContext());
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IDirectorRepository, DirectorRepository>();
+builder.Services.AddTransient<IFilmRepository, FilmRepository>();
+builder.Services.AddTransient<IGenreRepository, GenreRepository>();
+builder.Services.AddTransient<IStarRepository, StarRepository>();
+builder.Services.AddTransient<IActorFilmsService, ActorFilmsService>();
+builder.Services.AddTransient<IActorInvitationService, ActorInvitationService>();
+builder.Services.AddTransient<IDirectorFilmsService, DirectorFilmsService>();
+builder.Services.AddTransient<IFeeNegotiationService, FeeNegotiationService>();
+builder.Services.AddTransient<IUserManagementService, UserManagementService>();
 
 var app = builder.Build();
 
@@ -47,15 +58,13 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors();
 app.UseAuthentication();
-app.UseAuthorization();
 app.UseStaticFiles();
 app.UseRouting();
-
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-
-app.MapFallbackToFile("index.html");;
+app.UseAuthorization();
+app.UseEndpoints(builder =>
+{
+    builder.MapControllers();
+    builder.MapFallbackToFile("index.html");
+});
 
 app.Run();
