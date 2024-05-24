@@ -19,7 +19,8 @@ public class SuperUserController : BaseAuthController
 
     [HttpPost]
     [Authorize]
-    public IActionResult CreateDirector(CreateDirectorDto directorUserDto)
+    [Route("CreateDirector")]
+    public IActionResult CreateDirector([FromBody]CreateDirectorDto directorUserDto)
     {
         _managementService.CreateDirectorUser(new User
         {
@@ -33,20 +34,23 @@ public class SuperUserController : BaseAuthController
 
     [HttpPost]
     [Authorize]
-    public IActionResult CreateActor(CreateActorDto actorUserDto)
+    [Route("CreateActor")]
+    public IActionResult CreateActor([FromBody]CreateActorDto actorUserDto)
     {
         _managementService.CreateActorUser(new User
         {
             FullName = actorUserDto.FullName,
             Email = actorUserDto.Email,
             IsActor = true,
-            PasswordHash = actorUserDto.PasswordHash
+            PasswordHash = actorUserDto.PasswordHash,
+            ExpectedFee = actorUserDto.ExpectedFee
         });
         return Ok();
     }
 
     [HttpGet]
     [Authorize]
+    [Route("GetGenres")]
     public IEnumerable<GenreDto> GetGenres()
     {
         return _genreRepository.GetAll().Select(g => new GenreDto { Id = g.Id, Name = g.Name });
@@ -54,7 +58,8 @@ public class SuperUserController : BaseAuthController
 
     [HttpPost]
     [Authorize]
-    public IActionResult CreateGenre(GenreDto genre)
+    [Route("CreateGenre")]
+    public IActionResult CreateGenre([FromBody] GenreDto genre)
     {
         _genreRepository.CreateNew(new Genre
         {
@@ -66,7 +71,8 @@ public class SuperUserController : BaseAuthController
 
     [HttpPost]
     [Authorize]
-    public IActionResult UpdateGenre(GenreDto genre)
+    [Route("UpdateGenre")]
+    public IActionResult UpdateGenre([FromBody] GenreDto genre)
     {
         var genreD = _genreRepository.GetById(genre.Id);
         genreD.Name = genre.Name;
@@ -76,6 +82,7 @@ public class SuperUserController : BaseAuthController
 
     [HttpDelete]
     [Authorize]
+    [Route("DeleteGenre")]
     public IActionResult DeleteGenre(int genreId)
     {
         _genreRepository.Delete(_genreRepository.GetById(genreId));

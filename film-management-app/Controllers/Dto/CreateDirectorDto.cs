@@ -2,7 +2,7 @@
 
 public class CreateDirectorDto
 {
-    public string FullName { get; internal set; }
-    public string Email { get; internal set; }
-    public string PasswordHash { get; internal set; }
+    public string FullName { get; set; }
+    public string Email { get; set; }
+    public string PasswordHash { get; set; }
 }
