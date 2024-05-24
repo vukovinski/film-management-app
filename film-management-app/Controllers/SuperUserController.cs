@@ -63,7 +63,6 @@ public class SuperUserController : BaseAuthController
     {
         _genreRepository.CreateNew(new Genre
         {
-            Id = genre.Id,
             Name = genre.Name,
         });
         return Ok();
@@ -74,7 +73,7 @@ public class SuperUserController : BaseAuthController
     [Route("UpdateGenre")]
     public IActionResult UpdateGenre([FromBody] GenreDto genre)
     {
-        var genreD = _genreRepository.GetById(genre.Id);
+        var genreD = _genreRepository.GetById((int)genre.Id!);
         genreD.Name = genre.Name;
         _genreRepository.Update(genreD);
         return Ok();
@@ -82,7 +81,7 @@ public class SuperUserController : BaseAuthController
 
     [HttpDelete]
     [Authorize]
-    [Route("DeleteGenre")]
+    [Route("DeleteGenre/{genreId}")]
     public IActionResult DeleteGenre(int genreId)
     {
         _genreRepository.Delete(_genreRepository.GetById(genreId));

@@ -26,7 +26,7 @@ export class CreateDirector extends Component {
   render() {
     return (
       <div style={{ display: "flex", flexDirection: "column", maxWidth: "250px" }}>
-        <h2>Create actor</h2>
+        <h2>Create director</h2>
         <label>Fullname</label>
         <input id="createDirector.fullName" type="text"></input>
         <label>Email</label>

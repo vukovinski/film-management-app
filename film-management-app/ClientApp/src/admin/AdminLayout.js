@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
-import { AdminNavMenu } from './NavMenu';
+import { AdminNavMenu } from './AdminNavMenu';
 
 export class AdminLayout extends Component {
   static displayName = AdminLayout.name;

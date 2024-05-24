@@ -36,6 +36,9 @@ export class AdminNavMenu extends Component {
                 <NavLink tag={Link} to="/create-director" className="text-dark">Create director</NavLink>
               </NavItem>
               <NavItem>
+                <NavLink tag={Link} to="/genres" className="text-dark">Edit genres</NavLink>
+              </NavItem>
+              <NavItem>
                 <a href="/Auth/Logout" className="text-dark">Logout</a>
               </NavItem>
             </ul>
