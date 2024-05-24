@@ -4,8 +4,8 @@ import AppRoutes from './AppRoutes';
 import { Layout } from './components/Layout';
 import './custom.css';
 
-export default class App extends Component {
-  static displayName = App.name;
+export default class DirectorApp extends Component {
+  static displayName = DirectorApp.name;
 
   render() {
     return (
