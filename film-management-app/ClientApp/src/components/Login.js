@@ -37,7 +37,7 @@ export default class Login extends Component {
   render() {
     return (
       this.state.role === "" || this.state.role === "none"
-        ? <div>
+        ? <div style={{ display: "flex", flexDirection: "column", maxWidth: "250px" }}>
           <h2>Login</h2>
           <label>Email</label>
           <input id="login.emailEntry" type="text"></input>

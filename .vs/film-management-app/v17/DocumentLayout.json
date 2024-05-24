@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "N:\\Repo\\film-management-app\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\clientapp\\src\\admin\\createactor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\clientapp\\src\\admin\\createactor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\clientapp\\src\\components\\navmenu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\clientapp\\src\\components\\navmenu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\controllers\\superusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\controllers\\superusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\clientapp\\src\\adminapp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\clientapp\\src\\adminapp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\clientapp\\src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\clientapp\\src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\controllers\\dto\\createdirectordto.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\controllers\\dto\\createdirectordto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\controllers\\dto\\genredto.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\controllers\\dto\\genredto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,41 +54,101 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NavMenu.js",
-              "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\components\\NavMenu.js",
-              "RelativeDocumentMoniker": "film-management-app\\ClientApp\\src\\components\\NavMenu.js",
-              "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\components\\NavMenu.js",
-              "RelativeToolTip": "film-management-app\\ClientApp\\src\\components\\NavMenu.js",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAzwCEAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-05-24T10:01:00.967Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "film-management-app\\Controllers\\AuthController.cs",
-              "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "film-management-app\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAowCoAAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-24T09:57:29.61Z",
+              "Title": "CreateActor.js",
+              "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\admin\\CreateActor.js",
+              "RelativeDocumentMoniker": "film-management-app\\ClientApp\\src\\admin\\CreateActor.js",
+              "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\admin\\CreateActor.js",
+              "RelativeToolTip": "film-management-app\\ClientApp\\src\\admin\\CreateActor.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-24T10:20:34.315Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "AdminApp.js",
+              "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\AdminApp.js",
+              "RelativeDocumentMoniker": "film-management-app\\ClientApp\\src\\AdminApp.js",
+              "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\AdminApp.js",
+              "RelativeToolTip": "film-management-app\\ClientApp\\src\\AdminApp.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-24T10:11:01.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "index.js",
               "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\index.js",
               "RelativeDocumentMoniker": "film-management-app\\ClientApp\\src\\index.js",
               "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\index.js",
               "RelativeToolTip": "film-management-app\\ClientApp\\src\\index.js",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABcAAAAAAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABQAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-05-24T07:22:27.834Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "5948caae-a9fd-4293-8d63-5ca0039ec5b2",
+        "Display": 0,
+        "X": 1293,
+        "Y": 279,
+        "Width": 1239,
+        "Height": 849,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GenreDto.cs",
+              "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\Controllers\\Dto\\GenreDto.cs",
+              "RelativeDocumentMoniker": "film-management-app\\Controllers\\Dto\\GenreDto.cs",
+              "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\Controllers\\Dto\\GenreDto.cs",
+              "RelativeToolTip": "film-management-app\\Controllers\\Dto\\GenreDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-24T11:33:33.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateDirectorDto.cs",
+              "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\Controllers\\Dto\\CreateDirectorDto.cs",
+              "RelativeDocumentMoniker": "film-management-app\\Controllers\\Dto\\CreateDirectorDto.cs",
+              "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\Controllers\\Dto\\CreateDirectorDto.cs",
+              "RelativeToolTip": "film-management-app\\Controllers\\Dto\\CreateDirectorDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-24T11:33:21.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SuperUserController.cs",
+              "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\Controllers\\SuperUserController.cs",
+              "RelativeDocumentMoniker": "film-management-app\\Controllers\\SuperUserController.cs",
+              "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\Controllers\\SuperUserController.cs",
+              "RelativeToolTip": "film-management-app\\Controllers\\SuperUserController.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAgwCAAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-24T10:32:26.387Z",
               "EditorCaption": ""
             }
           ]
