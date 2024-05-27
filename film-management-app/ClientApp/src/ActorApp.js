@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AppRoutes from './AppRoutes';
-import { AdminLayout } from './admin/AdminLayout';
+import { ActorLayout } from './actor/ActorLayout';
+import { MyMovies } from './actor/MyMovies';
+import { Applicable } from './actor/Applicable';
+import { Invitations } from './actor/Invitations';
 import './custom.css';
 
 export default class ActorApp extends Component {
@@ -9,14 +11,13 @@ export default class ActorApp extends Component {
 
   render() {
     return (
-      <AdminLayout>
+      <ActorLayout>
         <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={index} {...rest} element={element} />;
-          })}
+          <Route index element={<MyMovies />} />
+          <Route path="/invites" element={<Invitations />} />
+          <Route path="/applicable" element={<Applicable />} />
         </Routes>
-      </AdminLayout>
+      </ActorLayout>
     );
   }
 }
