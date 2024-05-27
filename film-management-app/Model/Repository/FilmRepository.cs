@@ -22,27 +22,57 @@ namespace film_management_app.Server
 
         public IEnumerable<Film> GetByActor(int actorId)
         {
-            return _context.Films.Where(f => f.Actors.Any(a => a.UserId == actorId));
+            return _context.Films
+                .Where(f => f.Actors.Any(a => a.UserId == actorId))
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public IEnumerable<Film> GetByActor(FilmStar actor)
         {
-            return _context.Films.Where(f => f.Actors.Any(a => a.UserId == actor.UserId));
+            return _context.Films
+                .Where(f => f.Actors.Any(a => a.UserId == actor.UserId))
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public IEnumerable<Film> GetByActor(User user)
         {
-            return _context.Films.Where(f => f.Actors.Any(a => a.UserId == user.Id));
+            return _context.Films
+                .Where(f => f.Actors.Any(a => a.UserId == user.Id))
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public IEnumerable<Film> GetByDirector(int directorId)
         {
-            return _context.Films.Where(f => f.Director.UserId == directorId);
+            return _context.Films
+                .Where(f => f.Director.UserId == directorId)
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public IEnumerable<Film> GetByDirector(FilmDirector director)
         {
-            return _context.Films.Where(f => f.Director.UserId == director.UserId);
+            return _context.Films
+                .Where(f => f.Director.UserId == director.UserId)
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public IEnumerable<Film> GetByDirector(User user)
@@ -58,12 +88,24 @@ namespace film_management_app.Server
 
         public IEnumerable<Film> GetByGenre(params int[] genreIds)
         {
-            return _context.Films.Where(f => f.Genres.Select(g => g.GenreId).Union(genreIds).Count() == genreIds.Count());
+            return _context.Films
+                .Where(f => f.Genres.Select(g => g.GenreId).Union(genreIds).Count() == genreIds.Count())
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public IEnumerable<Film> GetByGenre(params Genre[] genres)
         {
-            return _context.Films.Where(f => f.Genres.Select(g => g.GenreId).Union(genres.Select(g => g.Id)).Count() == genres.Count());
+            return _context.Films
+                .Where(f => f.Genres.Select(g => g.GenreId).Union(genres.Select(g => g.Id)).Count() == genres.Count())
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public Film GetById(int id)
@@ -80,17 +122,35 @@ namespace film_management_app.Server
 
         public IEnumerable<Film> GetByInvitedActor(User actor)
         {
-            return _context.Films.Where(f => f.Actors.Any(a => a.UserId == actor.Id && !a.AcceptedRole));
+            return _context.Films
+                .Where(f => f.Actors.Any(a => a.UserId == actor.Id && !a.AcceptedRole))
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public IEnumerable<Film> GetByShootingDate(DateTime from, DateTime to)
         {
-            return _context.Films.Where(f => f.PlannedShootingStartDate > from && f.PlannedShootingEndDate <= to);
+            return _context.Films
+                .Where(f => f.PlannedShootingStartDate > from && f.PlannedShootingEndDate <= to)
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public IEnumerable<Film> GetByTitle(string title)
         {
-            return _context.Films.Where(f => f.Title.Contains(title));
+            return _context.Films
+                .Where(f => f.Title.Contains(title))
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public int Update(Film film)
