@@ -142,8 +142,8 @@ public class DirectorController : BaseAuthController
         film.Title = request.Title;
         film.TagLine = request.TagLine;
         film.Budget = request.Budget;
-        //film.Genres = request.Genres.Select(g => new FilmGenre { FilmId = film.Id, GenreId = g.Id }).ToList();
-        //film.Actors = request.Actors.Select(a => new FilmStar { FilmId = film.Id, UserId = a.ActorId, AcceptedRole = a.AcceptedRole, Fee = a.Fee }).ToList();
+        film.Genres = request.Genres.Select(g => new FilmGenre { FilmId = film.Id, GenreId = g.Id }).ToList();
+        film.Actors = request.Actors.Select(a => new FilmStar { FilmId = film.Id, UserId = a.ActorId, AcceptedRole = a.AcceptedRole, Fee = a.Fee }).ToList();
         film.PlannedShootingStartDate = DateOnly.Parse(request.PlannedShootingStartDate).ToDateTime(TimeOnly.MinValue);
         film.PlannedShootingEndDate = DateOnly.Parse(request.PlannedShootingEndDate).ToDateTime(TimeOnly.MinValue);
         _filmsService.Edit(film);

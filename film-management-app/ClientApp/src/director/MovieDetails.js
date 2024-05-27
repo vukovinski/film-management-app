@@ -22,9 +22,6 @@ export function MovieDetails() {
   const [selectedGenres, setSelectedGenres] = useState([]);
 
   function submit() {
-    console.log(mActors);
-    console.log(selectedActors);
-
     fetch(`${hostname}/Director/EditMovie`, {
       method: "POST", headers: {
         "Content-Type": "application/json",
@@ -38,7 +35,7 @@ export function MovieDetails() {
         PlannedShootingStartDate: plannedShootStart,
         PlannedShootingEndDate: plannedShootEnd,
         Genres: mGenres.filter(mG => new Set(selectedGenres).has(mG.id)),
-        Actors: mActors.filter(mA => new Set(selectedActors).has(mA.id))
+        Actors: mActors.filter(mA => new Set(selectedActors).has(mA.actorId))
       })
     })
     .then(resp => {
@@ -86,9 +83,11 @@ export function MovieDetails() {
       setTagLine(data.tagLine);
       setBudget(data.budget);
       setMGenres(data.genres);
+      setSelectedGenres(data.genres.map(g => g.id));
       setPlannedShootStart(data.plannedShootingStartDate);
       setPlannedShootEnd(data.plannedShootingEndDate);
       setMActors(data.actors);
+      setSelectedActors(data.actors.map(a => a.actorId));
       setNegotiations(data.negotiations);
       setDetails(data);
     });
