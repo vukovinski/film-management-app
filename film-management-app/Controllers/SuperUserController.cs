@@ -11,7 +11,7 @@ public class SuperUserController : BaseAuthController
     private readonly IGenreRepository _genreRepository;
     private readonly IUserManagementService _managementService;
 
-    public SuperUserController(IUserManagementService managementService, IGenreRepository genreRepository, IUserRepository userRepository) : base(userRepository)
+    public SuperUserController(IUserManagementService managementService, IGenreRepository genreRepository, IUserRepository userRepository, IHttpContextAccessor contextAccessor) : base(userRepository, contextAccessor)
     {
         _managementService = managementService;
         _genreRepository = genreRepository;
@@ -20,8 +20,9 @@ public class SuperUserController : BaseAuthController
     [HttpPost]
     [Authorize]
     [Route("CreateDirector")]
-    public IActionResult CreateDirector([FromBody]CreateDirectorDto directorUserDto)
+    public IActionResult CreateDirector([FromBody] CreateDirectorDto directorUserDto)
     {
+        CheckEmailUnique(directorUserDto.Email);
         _managementService.CreateDirectorUser(new User
         {
             FullName = directorUserDto.FullName,
@@ -35,8 +36,9 @@ public class SuperUserController : BaseAuthController
     [HttpPost]
     [Authorize]
     [Route("CreateActor")]
-    public IActionResult CreateActor([FromBody]CreateActorDto actorUserDto)
+    public IActionResult CreateActor([FromBody] CreateActorDto actorUserDto)
     {
+        CheckEmailUnique(actorUserDto.Email);
         _managementService.CreateActorUser(new User
         {
             FullName = actorUserDto.FullName,
@@ -61,6 +63,7 @@ public class SuperUserController : BaseAuthController
     [Route("CreateGenre")]
     public IActionResult CreateGenre([FromBody] GenreDto genre)
     {
+        CheckGenreUnique(genre.Name);
         _genreRepository.CreateNew(new Genre
         {
             Name = genre.Name,
@@ -86,5 +89,19 @@ public class SuperUserController : BaseAuthController
     {
         _genreRepository.Delete(_genreRepository.GetById(genreId));
         return Ok();
+    }
+
+    private void CheckEmailUnique(string email)
+    {
+        var existingUser = _userRepository.GetByEmail(email);
+        if (existingUser != null)
+            throw new BadHttpRequestException("User with that email already exists.", 400);
+    }
+
+    private void CheckGenreUnique(string name)
+    {
+        var existingGenre = _genreRepository.GetAll().Where(g => g.Name.ToLower() == name.ToLower()).FirstOrDefault();
+        if (existingGenre != null)
+            throw new BadHttpRequestException("Genre with that name already exists.", 400);
     }
 }
