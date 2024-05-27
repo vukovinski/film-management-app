@@ -1,4 +1,6 @@
-﻿namespace film_management_app.Server
+﻿using film_management_app.Server.Migrations;
+
+namespace film_management_app.Server
 {
     public class FeeNegotiationService : IFeeNegotiationService
     {
@@ -48,6 +50,13 @@
             film.FeeNegotiations = film.FeeNegotiations.Where(fn => fn.UserId != actorId).ToList();
 
             _filmRepository.Update(film);
+        }
+
+        public FeeNegotiation GetByFilmIdAndActorId(int filmId, int actorId)
+        {
+            var film = _filmRepository.GetById(filmId);
+            var negotiation = film.FeeNegotiations.Where(fn => fn.UserId == actorId).Single();
+            return negotiation;
         }
     }
 }

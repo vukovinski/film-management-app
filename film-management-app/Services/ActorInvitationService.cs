@@ -13,13 +13,13 @@
         public void Invite(Film film, User actor)
         {
             CheckNotAlreadyCast(film, actor);
-            _starRepository.CreateNew(new FilmStar() { Film = film, User = actor, FilmId = film.Id, UserId = actor.Id, Fee = actor.ExpectedFee ?? 1000m });
+            _starRepository.CreateNew(new FilmStar() { FilmId = film.Id, UserId = actor.Id, Fee = actor.ExpectedFee ?? 1000m });
         }
 
         public void RequestToJoin(Film film, User actor, decimal fee)
         {
             CheckNotAlreadyCast(film, actor);
-            _starRepository.CreateNew(new FilmStar() { Film = film, User = actor, FilmId = film.Id, UserId = actor.Id, Fee = fee, AcceptedRole = true });
+            _starRepository.CreateNew(new FilmStar() { FilmId = film.Id, UserId = actor.Id, Fee = fee, AcceptedRole = true });
         }
 
         private static void CheckNotAlreadyCast(Film film, User actor)

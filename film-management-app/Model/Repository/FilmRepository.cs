@@ -68,7 +68,14 @@ namespace film_management_app.Server
 
         public Film GetById(int id)
         {
-            return _context.Films.Where(f => f.Id == id).First();
+            return _context.Films
+                .Where(f => f.Id == id)
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User)
+                .First();
         }
 
         public IEnumerable<Film> GetByInvitedActor(User actor)

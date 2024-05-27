@@ -136,15 +136,38 @@ public class DirectorController : BaseAuthController
     [HttpPost]
     [Authorize]
     [Route("EditMovie")]
-    public IActionResult EditMovie(FilmDto request)
+    public IActionResult EditMovie(EditFilmDto request)
     {
         var film = _filmsService.MyFilms(AuthenticatedUser!).First(f => f.Id == request.Id);
         film.Title = request.Title;
         film.TagLine = request.TagLine;
         film.Budget = request.Budget;
-        film.Genres = request.Genres.Select(g => new FilmGenre { FilmId = film.Id, GenreId = g.Id }).ToList();
+        //film.Genres = request.Genres.Select(g => new FilmGenre { FilmId = film.Id, GenreId = g.Id }).ToList();
+        //film.Actors = request.Actors.Select(a => new FilmStar { FilmId = film.Id, UserId = a.ActorId, AcceptedRole = a.AcceptedRole, Fee = a.Fee }).ToList();
+        film.PlannedShootingStartDate = DateOnly.Parse(request.PlannedShootingStartDate).ToDateTime(TimeOnly.MinValue);
+        film.PlannedShootingEndDate = DateOnly.Parse(request.PlannedShootingEndDate).ToDateTime(TimeOnly.MinValue);
+        //film.FeeNegotiations = request.Negotiations.Select(fn => new FeeNegotiation { FilmId = film.Id, UserId = fn.ActorId, OldFee = fn.OldFee, NewFee = fn.NewFee }).ToList();
+        _filmsService.Edit(film);
+        return Ok();
+    }
 
-        // TODO: actors
+    [HttpPut]
+    [Authorize]
+    [Route("AcceptFee/{filmId}/{actorId}")]
+    public IActionResult AcceptFee(int filmId, int actorId)
+    {
+        var negotiation = _negotiationService.GetByFilmIdAndActorId(filmId, actorId);
+        _negotiationService.Accept(negotiation);
+        return Ok();
+    }
+
+    [HttpPut]
+    [Authorize]
+    [Route("DeclineFee/{filmId}/{actorId}")]
+    public IActionResult DeclineFee(int filmId, int actorId)
+    {
+        var negotiation = _negotiationService.GetByFilmIdAndActorId(filmId, actorId);
+        _negotiationService.Decline(negotiation);
         return Ok();
     }
 

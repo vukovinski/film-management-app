@@ -1,10 +1,11 @@
 ﻿import Select from 'react-select';
 import { hostname } from '../server';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 export function MovieDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [genres, setGenres] = useState([]);
   const [actors, setActors] = useState([]);
   const [details, setDetails] = useState(null);
@@ -17,6 +18,58 @@ export function MovieDetails() {
   const [plannedShootEnd, setPlannedShootEnd] = useState("");
   const [mActors, setMActors] = useState([]);
   const [negotiations, setNegotiations] = useState([]);
+
+  function submit() {
+    console.log(mGenres);
+    console.log(mActors);
+    console.log(negotiations);
+
+    fetch(`${hostname}/Director/EditMovie`, {
+      method: "POST", headers: {
+        "Content-Type": "application/json",
+        "Authorization": sessionStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        Id: Number(id),
+        Title: title,
+        TagLine: tagLine,
+        Budget: Number(budget),
+        PlannedShootingStartDate: plannedShootStart,
+        PlannedShootingEndDate: plannedShootEnd
+      })
+    })
+    .then(resp => {
+      if (resp.ok) {
+        navigate(`/`)
+      }
+    })
+  }
+
+  function accept(actorId) {
+    fetch(`${hostname}/Director/AcceptFee/${id}/${actorId}`, {
+      method: "PUT", headers: {
+        "Authorization": sessionStorage.getItem("token")
+      }
+    })
+    .then(resp => {
+      if (resp.ok) {
+        navigate(`/`)
+      }
+    })
+  }
+
+  function decline(actorId) {
+    fetch(`${hostname}/Director/DeclineFee/${id}/${actorId}`, {
+      method: "PUT", headers: {
+        "Authorization": sessionStorage.getItem("token")
+      }
+    })
+    .then(resp => {
+      if (resp.ok) {
+        navigate(`/`)
+      }
+    })
+  }
 
   useEffect(() => {
     fetch(`${hostname}/Director/MovieDetails/${id}`, {
@@ -67,6 +120,7 @@ export function MovieDetails() {
     <label>Genres</label>
     <Select
       isMulti
+      id="editMovie.genres"
       defaultValue={mGenres.map(mg => { return { value: mg.id, label: mg.name }})}
       options={genres.map(g => { return { value: g.id, label: g.name } })}
     />
@@ -79,22 +133,23 @@ export function MovieDetails() {
     <label>Actors</label>
     <Select
       isMulti
-      defaultValue={mActors.map(ac => { return { value: ac.id, label: ac.fullName }})}
-      options={actors.map(a => { return { value: a.id, label: a.fullName } })}
+      onChange={options => setMActors(options.map(o => actors.find(a => a.id === o.value)))}
+      defaultValue={mActors.map(ac => { return { value: ac.id, label: `${ac.fullName} - ${ac.currentFee}` }})}
+      options={actors.map(a => { return { value: a.id, label: `${a.fullName} - ${a.currentFee}` } })}
     />
     <label>Fee negotiations</label>
     {negotiations.map(fn => {
       const actor = actors.find(a => fn.actorId === a.id);
       return actor && <div key={fn.id} style={{ display: "flex", flexDirection: "row"}}>
         <p>{actor.fullName} - {fn.oldFee} - {fn.newFee}</p>
-        <button>✅</button>
-        <button>❌</button>
+        <button onClick={() => accept(fn.actorId)}>✅</button>
+        <button onClick={() => decline(fn.actorId)}>❌</button>
       </div>
     })}
     {negotiations.length > 0
       ? <button disabled>Shoot</button>
       : <button>Shoot</button>
     }
-    <button>Save changes</button>
+    <button onClick={submit}>Save changes</button>
   </div>
 }

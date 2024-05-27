@@ -5,5 +5,6 @@
         void Accept(FeeNegotiation feeNegotiation);
         void Decline(FeeNegotiation feeNegotiation);
         FeeNegotiation Create(FilmStar actor, decimal newFee);
+        FeeNegotiation GetByFilmIdAndActorId(int filmId, int actorId);
     }
 }
