@@ -16,6 +16,11 @@
             return _filmRepository.GetByInvitedActor(actor).ToArray();
         }
 
+        public Film[] MyFilms(User actor)
+        {
+            return _filmRepository.GetByActor(actor).ToArray();
+        }
+
         public void UpdateInformation(User actor)
         {
             _userRepository.Update(actor);
