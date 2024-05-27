@@ -123,12 +123,23 @@ namespace film_management_app.Server
         public IEnumerable<Film> GetByInvitedActor(User actor)
         {
             return _context.Films
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User)
                 .Where(f => f.Actors.Any(a => a.UserId == actor.Id && !a.AcceptedRole))
                 .Include(f => f.Genres)
                 .ThenInclude(fg => fg.Genre)
-                .Include(f => f.FeeNegotiations)
+                .Include(f => f.FeeNegotiations);
+        }
+
+        public IEnumerable<Film> GetByNoActor(int actorId)
+        {
+            return _context.Films
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Where(f => !f.Actors.Any(a => a.UserId == actorId))
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations);
         }
 
         public IEnumerable<Film> GetByShootingDate(DateTime from, DateTime to)

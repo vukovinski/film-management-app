@@ -48,7 +48,30 @@ public class ActorController : BaseAuthController
             TagLine = f.TagLine,
             Budget = f.Budget,
             Genres = f.Genres.Select(g => new GenreDto { Id = g.GenreId, Name = _genreRepository.GetById(g.GenreId).Name }).ToList(),
-            Director = new DirectorDto { Id = AuthenticatedUser!.Id, FullName = AuthenticatedUser!.FullName },
+            Director = new DirectorDto { Id = f.Director!.UserId, FullName = f.Director.User.FullName },
+            Actors = f.Actors.Select(a => new StarDto { ActorId = a.UserId, FullName = a.User.FullName, Fee = a.Fee, AcceptedRole = a.AcceptedRole }).ToList(),
+            Negotiations = f.FeeNegotiations.Select(fn => new FeeNegotiationDto { ActorId = fn.UserId, OldFee = fn.OldFee, NewFee = fn.NewFee }).ToList(),
+            HasBeenFilmed = f.HasBeenFilmed,
+            PlannedShootingStartDate = f.PlannedShootingStartDate.ToShortDateString(),
+            PlannedShootingEndDate = f.PlannedShootingEndDate.ToShortDateString(),
+            IsShootable = f.IsShootable,
+            IsOverBudget = f.IsOverBudget
+        });
+    }
+
+    [HttpGet]
+    [Authorize]
+    [Route("OtherMovies")]
+    public IEnumerable<FilmDto> OtherMovies()
+    {
+        return _filmsService.OtherFilms(AuthenticatedUser!).Select(f => new FilmDto
+        {
+            Id = f.Id,
+            Title = f.Title,
+            TagLine = f.TagLine,
+            Budget = f.Budget,
+            Genres = f.Genres.Select(g => new GenreDto { Id = g.GenreId, Name = _genreRepository.GetById(g.GenreId).Name }).ToList(),
+            Director = new DirectorDto { Id = f.Director!.UserId, FullName = f.Director.User.FullName },
             Actors = f.Actors.Select(a => new StarDto { ActorId = a.UserId, FullName = a.User.FullName, Fee = a.Fee, AcceptedRole = a.AcceptedRole }).ToList(),
             Negotiations = f.FeeNegotiations.Select(fn => new FeeNegotiationDto { ActorId = fn.UserId, OldFee = fn.OldFee, NewFee = fn.NewFee }).ToList(),
             HasBeenFilmed = f.HasBeenFilmed,

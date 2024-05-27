@@ -10,6 +10,7 @@
         IEnumerable<Film> GetByDirector(int directorId);
         IEnumerable<Film> GetByDirector(FilmDirector director);
         IEnumerable<Film> GetByDirector(User user);
+        IEnumerable<Film> GetByNoActor(int actorId);
         IEnumerable<Film> GetByGenre(params int[] genreIds);
         IEnumerable<Film> GetByGenre(params Genre[] genres);
         IEnumerable<Film> GetByShootingDate(DateTime from, DateTime to);
