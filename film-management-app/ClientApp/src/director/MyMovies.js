@@ -41,7 +41,7 @@ export class MyMovies extends Component {
         {this.state.movies.map(m =>
           this.state.detail === m.id ? <Navigate to={`/movie-details/${m.id}`} replace="true" /> :
           this.state.actors === m.id ? <Navigate to={`/invite-actor/${m.id}`} replace="true" />:
-          <div key={m.id} style={{ borderRadius: "10px", backgroundColor: "#DDDDDD", padding: "15px" }}>
+          <div key={m.id} style={{ borderRadius: "10px", backgroundColor: "#DDDDDD", padding: "15px", marginBottom: "15px" }}>
             <h2>{m.title}</h2>
             <blockquote>{m.tagLine}</blockquote>
             <p>Planned shooting: {m.plannedShootingStartDate} - {m.plannedShootingEndDate}</p>
