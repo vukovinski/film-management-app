@@ -36,8 +36,8 @@ public class Film
     public string Title { get; set; }
     public string TagLine { get; set; }
     public decimal Budget { get; set; }
-    public List<Genre> Genres { get; set; } = new();
-    public FilmDirector Director { get; set; }
+    public FilmDirector? Director { get; set; }
+    public List<FilmGenre> Genres { get; set; } = new();
     public List<FilmStar> Actors { get; set; } = new();
     public List<FeeNegotiation> FeeNegotiations { get; set; } = new();
     public bool HasBeenFilmed { get; set; } = false;
@@ -85,6 +85,16 @@ public class FilmStar
     public Film Film { get; set; }
 }
 
+public class FilmGenre
+{
+    public int Id { get; set; }
+    public int FilmId { get; set; }
+    public int GenreId { get; set; }
+
+    public Film Film { get; set; }
+    public Genre Genre { get; set; }
+}
+
 public class FeeNegotiation
 {
     public int UserId { get; set; }
@@ -98,6 +108,4 @@ public class Genre
 {
     public int Id { get; set; }
     public string Name { get; set; }
-
-    public List<Film> Films { get; set; }
 }
