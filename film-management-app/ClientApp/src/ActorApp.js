@@ -4,6 +4,7 @@ import { ActorLayout } from './actor/ActorLayout';
 import { MyMovies } from './actor/MyMovies';
 import { Applicable } from './actor/Applicable';
 import { Invitations } from './actor/Invitations';
+import { Negotiate } from './actor/Negotiate';
 import './custom.css';
 
 export default class ActorApp extends Component {
@@ -16,6 +17,7 @@ export default class ActorApp extends Component {
           <Route index element={<MyMovies />} />
           <Route path="/invites" element={<Invitations />} />
           <Route path="/applicable" element={<Applicable />} />
+          <Route path="/negotiate/:movieId" element={<Negotiate />} />
         </Routes>
       </ActorLayout>
     );

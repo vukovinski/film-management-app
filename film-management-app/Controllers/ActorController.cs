@@ -8,8 +8,16 @@ namespace film_management_app.Controllers;
 [Route("[controller]")]
 public class ActorController : BaseAuthController
 {
-    public ActorController(IUserRepository userRepository, IHttpContextAccessor contextAccessor) : base(userRepository, contextAccessor)
+    private readonly IActorFilmsService _filmsService;
+    private readonly IGenreRepository _genreRepository;
+    private readonly IFeeNegotiationService _negotiationService;
+
+    public ActorController(IUserRepository userRepository, IGenreRepository genreRepository, IFeeNegotiationService feeNegotiationService, IActorFilmsService actorFilmsService, IHttpContextAccessor contextAccessor) : base(userRepository, contextAccessor)
     {
+        _filmsService = actorFilmsService;
+        _genreRepository = genreRepository;
+        _negotiationService = feeNegotiationService;
+
         if (AuthenticatedUser == null || !AuthenticatedUser.IsActor)
             throw new BadHttpRequestException("User is not actor", 301);
     }
@@ -30,9 +38,52 @@ public class ActorController : BaseAuthController
 
     [HttpGet]
     [Authorize]
+    [Route("MyMovies")]
     public IEnumerable<FilmDto> MyMovies()
     {
-        throw new NotImplementedException();
+        return _filmsService.MyFilms(AuthenticatedUser!).Select(f => new FilmDto
+        {
+            Id = f.Id,
+            Title = f.Title,
+            TagLine = f.TagLine,
+            Budget = f.Budget,
+            Genres = f.Genres.Select(g => new GenreDto { Id = g.GenreId, Name = _genreRepository.GetById(g.GenreId).Name }).ToList(),
+            Director = new DirectorDto { Id = AuthenticatedUser!.Id, FullName = AuthenticatedUser!.FullName },
+            Actors = f.Actors.Select(a => new StarDto { ActorId = a.UserId, FullName = a.User.FullName, Fee = a.Fee, AcceptedRole = a.AcceptedRole }).ToList(),
+            Negotiations = f.FeeNegotiations.Select(fn => new FeeNegotiationDto { ActorId = fn.UserId, OldFee = fn.OldFee, NewFee = fn.NewFee }).ToList(),
+            HasBeenFilmed = f.HasBeenFilmed,
+            PlannedShootingStartDate = f.PlannedShootingStartDate.ToShortDateString(),
+            PlannedShootingEndDate = f.PlannedShootingEndDate.ToShortDateString(),
+            IsShootable = f.IsShootable,
+            IsOverBudget = f.IsOverBudget
+        });
+    }
+
+    [HttpGet]
+    [Authorize]
+    [Route("GetStarring/{filmId}")]
+    public StarDto GetStarring(int filmId)
+    {
+        var film = _filmsService.MyFilms(AuthenticatedUser!).First(f => f.Id == filmId);
+        var starring = film.Actors.First(a => a.UserId == AuthenticatedUser!.Id);
+        return new StarDto
+        {
+            Fee = starring.Fee,
+            ActorId = starring.UserId,
+            FullName = starring.User.FullName,
+            AcceptedRole = starring.AcceptedRole
+        };
+    }
+
+    [HttpPut]
+    [Authorize]
+    [Route("CreateNegotiation/{filmId}/{newFee}")]
+    public IActionResult CreateNegotiation(int filmId, decimal newFee)
+    {
+        var film = _filmsService.MyFilms(AuthenticatedUser!).First(f => f.Id == filmId);
+        var starring = film.Actors.First(a => a.UserId == AuthenticatedUser!.Id);
+        _negotiationService.Create(starring, newFee);
+        return Ok();
     }
 
     [HttpPut]
