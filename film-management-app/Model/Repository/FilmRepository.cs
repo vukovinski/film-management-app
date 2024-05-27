@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace film_management_app.Server
 {
     public class FilmRepository : IFilmRepository
@@ -45,17 +47,23 @@ namespace film_management_app.Server
 
         public IEnumerable<Film> GetByDirector(User user)
         {
-            return _context.Films.Where(f => f.Director.UserId == user.Id);
+            return _context.Films
+                .Where(f => f.Director.UserId == user.Id)
+                .Include(f => f.Genres)
+                .ThenInclude(fg => fg.Genre)
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Actors)
+                .ThenInclude(fs => fs.User);
         }
 
         public IEnumerable<Film> GetByGenre(params int[] genreIds)
         {
-            return _context.Films.Where(f => f.Genres.Select(g => g.Id).Union(genreIds).Count() == genreIds.Count());
+            return _context.Films.Where(f => f.Genres.Select(g => g.GenreId).Union(genreIds).Count() == genreIds.Count());
         }
 
         public IEnumerable<Film> GetByGenre(params Genre[] genres)
         {
-            return _context.Films.Where(f => f.Genres.Select(g => g.Id).Union(genres.Select(g => g.Id)).Count() == genres.Count());
+            return _context.Films.Where(f => f.Genres.Select(g => g.GenreId).Union(genres.Select(g => g.Id)).Count() == genres.Count());
         }
 
         public Film GetById(int id)

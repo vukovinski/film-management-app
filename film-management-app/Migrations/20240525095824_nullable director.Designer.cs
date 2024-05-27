@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using film_management_app.Server;
 
@@ -10,9 +11,10 @@ using film_management_app.Server;
 namespace film_management_app.Server.Migrations
 {
     [DbContext(typeof(FilmManagementDbContext))]
-    partial class FilmManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240525095824_nullable director")]
+    partial class nullabledirector
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.30");
@@ -83,27 +85,6 @@ namespace film_management_app.Server.Migrations
                         .IsUnique();
 
                     b.ToTable("FilmDirectors");
-                });
-
-            modelBuilder.Entity("film_management_app.Server.FilmGenre", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("FilmId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("GenreId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FilmId");
-
-                    b.HasIndex("GenreId");
-
-                    b.ToTable("FilmGenre");
                 });
 
             modelBuilder.Entity("film_management_app.Server.FilmStar", b =>
@@ -179,6 +160,21 @@ namespace film_management_app.Server.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("FilmGenre", b =>
+                {
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GenresId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("FilmsId", "GenresId");
+
+                    b.HasIndex("GenresId");
+
+                    b.ToTable("FilmGenre");
+                });
+
             modelBuilder.Entity("film_management_app.Server.FeeNegotiation", b =>
                 {
                     b.HasOne("film_management_app.Server.Film", null)
@@ -207,25 +203,6 @@ namespace film_management_app.Server.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("film_management_app.Server.FilmGenre", b =>
-                {
-                    b.HasOne("film_management_app.Server.Film", "Film")
-                        .WithMany("Genres")
-                        .HasForeignKey("FilmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("film_management_app.Server.Genre", "Genre")
-                        .WithMany()
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Film");
-
-                    b.Navigation("Genre");
-                });
-
             modelBuilder.Entity("film_management_app.Server.FilmStar", b =>
                 {
                     b.HasOne("film_management_app.Server.Film", "Film")
@@ -245,6 +222,21 @@ namespace film_management_app.Server.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("FilmGenre", b =>
+                {
+                    b.HasOne("film_management_app.Server.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("film_management_app.Server.Genre", null)
+                        .WithMany()
+                        .HasForeignKey("GenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("film_management_app.Server.Film", b =>
                 {
                     b.Navigation("Actors");
@@ -252,8 +244,6 @@ namespace film_management_app.Server.Migrations
                     b.Navigation("Director");
 
                     b.Navigation("FeeNegotiations");
-
-                    b.Navigation("Genres");
                 });
 #pragma warning restore 612, 618
         }
