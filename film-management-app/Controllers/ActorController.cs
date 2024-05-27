@@ -8,7 +8,7 @@ namespace film_management_app.Controllers;
 [Route("[controller]")]
 public class ActorController : BaseAuthController
 {
-    public ActorController(IUserRepository userRepository) : base(userRepository)
+    public ActorController(IUserRepository userRepository, IHttpContextAccessor contextAccessor) : base(userRepository, contextAccessor)
     {
         if (AuthenticatedUser == null || !AuthenticatedUser.IsActor)
             throw new BadHttpRequestException("User is not actor", 301);

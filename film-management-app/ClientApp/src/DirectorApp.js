@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AppRoutes from './AppRoutes';
-import { AdminLayout } from './admin/AdminLayout';
+import { MyMovies } from './director/MyMovies';
+import { CreateMovie } from './director/CreateMovie';
+import { InviteActor } from './director/InviteActor';
+import { MovieDetails } from './director/MovieDetails';
+import { DirectorLayout } from './director/DirectorLayout';
 import './custom.css';
 
 export default class DirectorApp extends Component {
@@ -9,14 +12,14 @@ export default class DirectorApp extends Component {
 
   render() {
     return (
-      <AdminLayout>
+      <DirectorLayout>
         <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={index} {...rest} element={element} />;
-          })}
+          <Route index element={<MyMovies />} />
+          <Route path="/create-movie" element={<CreateMovie />} />
+          <Route path="/movie-details/:id" element={<MovieDetails />} />
+          <Route path="/invite-actor/:movieId" element={<InviteActor />} />
         </Routes>
-      </AdminLayout>
+      </DirectorLayout>
     );
   }
 }

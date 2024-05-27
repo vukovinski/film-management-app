@@ -7,13 +7,15 @@
             string tagLine,
             decimal budget,
             Genre[] genres,
-            FilmDirector director,
+            int directorId,
             DateTime plannedShootingStart,
             DateTime plannedShootingEnd
         );
-
+        void Delete(Film film);
         void Edit(Film film);
 
         Film[] MyFilms(User director);
+
+        User[] Actors();
     }
 }
