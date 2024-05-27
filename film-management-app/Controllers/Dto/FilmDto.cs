@@ -8,7 +8,7 @@ public class FilmDto
     public decimal Budget { get; set; }
     public List<GenreDto> Genres { get; set; } = new();
     public DirectorDto Director { get; set; }
-    public List<ActorDto> Actors { get; set; } = new();
+    public List<StarDto> Actors { get; set; } = new();
     public List<FeeNegotiationDto> Negotiations { get; set; } = new();
     public string PlannedShootingStartDate { get; set; }
     public string PlannedShootingEndDate { get; set; }

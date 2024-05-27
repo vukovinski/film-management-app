@@ -37,7 +37,7 @@ public class DirectorController : BaseAuthController
             Budget = f.Budget,
             Genres = f.Genres.Select(g => new GenreDto { Id = g.GenreId, Name = _genreRepository.GetById(g.GenreId).Name }).ToList(),
             Director = new DirectorDto { Id = AuthenticatedUser!.Id, FullName = AuthenticatedUser!.FullName },
-            Actors = f.Actors.Select(a => new ActorDto { Id = a.UserId, FullName = a.User.FullName, CurrentFee = a.Fee }).ToList(),
+            Actors = f.Actors.Select(a => new StarDto { ActorId = a.UserId, FullName = a.User.FullName, Fee = a.Fee, AcceptedRole = a.AcceptedRole }).ToList(),
             Negotiations = f.FeeNegotiations.Select(fn => new FeeNegotiationDto { ActorId = fn.UserId, OldFee = fn.OldFee, NewFee = fn.NewFee }).ToList(),
             HasBeenFilmed = f.HasBeenFilmed,
             PlannedShootingStartDate = f.PlannedShootingStartDate.ToShortDateString(),
@@ -106,7 +106,7 @@ public class DirectorController : BaseAuthController
             Budget = film.Budget,
             Genres = film.Genres.Select(g => new GenreDto { Id = g.GenreId, Name = _genreRepository.GetById(g.GenreId).Name }).ToList(),
             Director = new DirectorDto { Id = AuthenticatedUser!.Id, FullName = AuthenticatedUser!.FullName },
-            Actors = film.Actors.Select(a => new ActorDto { Id = a.UserId, FullName = a.User.FullName, CurrentFee = a.Fee }).ToList(),
+            Actors = film.Actors.Select(a => new StarDto { ActorId = a.UserId, FullName = a.User.FullName, Fee = a.Fee, AcceptedRole = a.AcceptedRole }).ToList(),
             Negotiations = film.FeeNegotiations.Select(fn => new FeeNegotiationDto { ActorId = fn.UserId, OldFee = fn.OldFee, NewFee = fn.NewFee }).ToList(),
             HasBeenFilmed = film.HasBeenFilmed,
             PlannedShootingStartDate = film.PlannedShootingStartDate.ToString("yyyy-MM-dd"),
@@ -146,7 +146,6 @@ public class DirectorController : BaseAuthController
         //film.Actors = request.Actors.Select(a => new FilmStar { FilmId = film.Id, UserId = a.ActorId, AcceptedRole = a.AcceptedRole, Fee = a.Fee }).ToList();
         film.PlannedShootingStartDate = DateOnly.Parse(request.PlannedShootingStartDate).ToDateTime(TimeOnly.MinValue);
         film.PlannedShootingEndDate = DateOnly.Parse(request.PlannedShootingEndDate).ToDateTime(TimeOnly.MinValue);
-        //film.FeeNegotiations = request.Negotiations.Select(fn => new FeeNegotiation { FilmId = film.Id, UserId = fn.ActorId, OldFee = fn.OldFee, NewFee = fn.NewFee }).ToList();
         _filmsService.Edit(film);
         return Ok();
     }

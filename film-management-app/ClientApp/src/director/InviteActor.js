@@ -7,7 +7,7 @@ export function InviteActor() {
   const { movieId } = useParams();
   const [actors, setActors] = useState([]);
   const [movieDetails, setMovieDetails] = useState(null);
-  const [selectedAuthor, setSelectedAuthor] = useState(1);
+  const [selectedAuthor, setSelectedAuthor] = useState(null);
 
   function sendInvite() {
     fetch(`${hostname}/Director/InviteActor/${movieId}/${selectedAuthor}`, {

@@ -18,11 +18,12 @@ export function MovieDetails() {
   const [plannedShootEnd, setPlannedShootEnd] = useState("");
   const [mActors, setMActors] = useState([]);
   const [negotiations, setNegotiations] = useState([]);
+  const [selectedActors, setSelectedActors] = useState([]);
+  const [selectedGenres, setSelectedGenres] = useState([]);
 
   function submit() {
-    console.log(mGenres);
     console.log(mActors);
-    console.log(negotiations);
+    console.log(selectedActors);
 
     fetch(`${hostname}/Director/EditMovie`, {
       method: "POST", headers: {
@@ -35,7 +36,9 @@ export function MovieDetails() {
         TagLine: tagLine,
         Budget: Number(budget),
         PlannedShootingStartDate: plannedShootStart,
-        PlannedShootingEndDate: plannedShootEnd
+        PlannedShootingEndDate: plannedShootEnd,
+        Genres: mGenres.filter(mG => new Set(selectedGenres).has(mG.id)),
+        Actors: mActors.filter(mA => new Set(selectedActors).has(mA.id))
       })
     })
     .then(resp => {
@@ -120,7 +123,7 @@ export function MovieDetails() {
     <label>Genres</label>
     <Select
       isMulti
-      id="editMovie.genres"
+      onChange={(items) => setSelectedGenres(items.map(i => i.value))}     
       defaultValue={mGenres.map(mg => { return { value: mg.id, label: mg.name }})}
       options={genres.map(g => { return { value: g.id, label: g.name } })}
     />
@@ -133,9 +136,10 @@ export function MovieDetails() {
     <label>Actors</label>
     <Select
       isMulti
-      onChange={options => setMActors(options.map(o => actors.find(a => a.id === o.value)))}
-      defaultValue={mActors.map(ac => { return { value: ac.id, label: `${ac.fullName} - ${ac.currentFee}` }})}
-      options={actors.map(a => { return { value: a.id, label: `${a.fullName} - ${a.currentFee}` } })}
+      isSearchable
+      onChange={(items) => setSelectedActors(items.map(i => i.value))}
+      defaultValue={mActors.map(ac => { return { value: ac.actorId, label: `${ac.fullName} - ${ac.fee}` }})}
+      options={actors.map(a => { return { value: a.actorId, label: `${a.fullName} - ${a.fee}` } })}
     />
     <label>Fee negotiations</label>
     {negotiations.map(fn => {
