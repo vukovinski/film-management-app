@@ -28,7 +28,9 @@ namespace film_management_app.Server
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User);
         }
 
         public IEnumerable<Film> GetByActor(FilmStar actor)
@@ -39,7 +41,9 @@ namespace film_management_app.Server
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User);
         }
 
         public IEnumerable<Film> GetByActor(User user)
@@ -50,40 +54,48 @@ namespace film_management_app.Server
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User);
         }
 
         public IEnumerable<Film> GetByDirector(int directorId)
         {
             return _context.Films
-                .Where(f => f.Director.UserId == directorId)
                 .Include(f => f.Genres)
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User)
+                .Where(f => f.Director.UserId == directorId);
         }
 
         public IEnumerable<Film> GetByDirector(FilmDirector director)
         {
             return _context.Films
-                .Where(f => f.Director.UserId == director.UserId)
                 .Include(f => f.Genres)
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User)
+                .Where(f => f.Director.UserId == director.UserId);
         }
 
         public IEnumerable<Film> GetByDirector(User user)
         {
             return _context.Films
-                .Where(f => f.Director.UserId == user.Id)
                 .Include(f => f.Genres)
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User)
+                .Where(f => f.Director.UserId == user.Id);
         }
 
         public IEnumerable<Film> GetByGenre(params int[] genreIds)
@@ -94,7 +106,9 @@ namespace film_management_app.Server
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User);
         }
 
         public IEnumerable<Film> GetByGenre(params Genre[] genres)
@@ -105,7 +119,9 @@ namespace film_management_app.Server
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User);
         }
 
         public Film GetById(int id)
@@ -117,6 +133,8 @@ namespace film_management_app.Server
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
                 .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User)
                 .First();
         }
 
@@ -128,7 +146,9 @@ namespace film_management_app.Server
                 .Where(f => f.Actors.Any(a => a.UserId == actor.Id && !a.AcceptedRole))
                 .Include(f => f.Genres)
                 .ThenInclude(fg => fg.Genre)
-                .Include(f => f.FeeNegotiations);
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User);
         }
 
         public IEnumerable<Film> GetByNoActor(int actorId)
@@ -139,7 +159,9 @@ namespace film_management_app.Server
                 .Where(f => !f.Actors.Any(a => a.UserId == actorId))
                 .Include(f => f.Genres)
                 .ThenInclude(fg => fg.Genre)
-                .Include(f => f.FeeNegotiations);
+                .Include(f => f.FeeNegotiations)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User);
         }
 
         public IEnumerable<Film> GetByShootingDate(DateTime from, DateTime to)
@@ -150,7 +172,9 @@ namespace film_management_app.Server
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User);
         }
 
         public IEnumerable<Film> GetByTitle(string title)
@@ -161,7 +185,9 @@ namespace film_management_app.Server
                 .ThenInclude(fg => fg.Genre)
                 .Include(f => f.FeeNegotiations)
                 .Include(f => f.Actors)
-                .ThenInclude(fs => fs.User);
+                .ThenInclude(fs => fs.User)
+                .Include(f => f.Director)
+                .ThenInclude(fd => fd!.User);
         }
 
         public int Update(Film film)
