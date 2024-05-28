@@ -9,6 +9,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\controllers\\actorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\controllers\\actorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|n:\\repo\\film-management-app\\film-management-app\\clientapp\\src\\actorapp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{CF26184D-9462-4965-AC4B-CE007FEF9EBD}|film-management-app\\film-management-app.csproj|solutionrelative:film-management-app\\clientapp\\src\\actorapp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,13 +46,26 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ActorApp.js",
+              "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\ActorApp.js",
+              "RelativeDocumentMoniker": "film-management-app\\ClientApp\\src\\ActorApp.js",
+              "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\ActorApp.js",
+              "RelativeToolTip": "film-management-app\\ClientApp\\src\\ActorApp.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-28T08:27:29.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Applicable.js",
               "DocumentMoniker": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\actor\\Applicable.js",
               "RelativeDocumentMoniker": "film-management-app\\ClientApp\\src\\actor\\Applicable.js",
               "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\ClientApp\\src\\actor\\Applicable.js",
               "RelativeToolTip": "film-management-app\\ClientApp\\src\\actor\\Applicable.js",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAQwC0AAAAUAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAiwBYAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-05-27T12:56:43.545Z",
               "EditorCaption": ""
@@ -82,7 +99,7 @@
               "RelativeDocumentMoniker": "film-management-app\\Controllers\\ActorController.cs",
               "ToolTip": "N:\\Repo\\film-management-app\\film-management-app\\Controllers\\ActorController.cs",
               "RelativeToolTip": "film-management-app\\Controllers\\ActorController.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAgwD8AAAAaAAAA",
+              "ViewState": "AQIAACYAAAAAAAAAAAAgwCsAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-27T11:32:57.196Z",
               "EditorCaption": ""

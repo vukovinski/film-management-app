@@ -7,7 +7,7 @@ export class Applicable extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { movies: [], apply: false };
+    this.state = { movies: [], apply: 0 };
     this.applyClick = this.applyClick.bind(this);
     this.populateMoviesData = this.populateMoviesData.bind(this);
   }
@@ -17,7 +17,7 @@ export class Applicable extends Component {
   }
 
   applyClick(movieId) {
-    this.setState({ movies: this.state.movies, apply: true });
+    this.setState({ movies: this.state.movies, apply: movieId });
   }
 
   async populateMoviesData() {
@@ -27,14 +27,14 @@ export class Applicable extends Component {
       }
     })
     .then(resp => resp.json())
-    .then(data => this.setState({ movies: data, apply: this.state.negotiate }));
+    .then(data => this.setState({ movies: data, apply: this.state.apply }));
   }
 
   render() {
     return (
       <div>
         {this.state.movies.map(m =>
-          this.state.apply ? <Navigate to={`/negotiate/${m.id}`} replace="true" /> :
+          this.state.apply === m.id ? <Navigate to={`/apply/${m.id}`} replace="true" /> :
             <div key={m.id} style={{ borderRadius: "10px", backgroundColor: "#DDDDDD", padding: "15px", marginBottom: "15px" }}>
               <h2>{m.title}</h2>
               <blockquote>{m.tagLine}</blockquote>

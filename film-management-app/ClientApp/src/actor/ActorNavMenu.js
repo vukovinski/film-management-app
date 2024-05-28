@@ -36,7 +36,7 @@ export class ActorNavMenu extends Component {
                 <NavLink tag={Link} to="/invites" className="text-dark">My Invites</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/applicable" className="text-dark">Applicable</NavLink>
+                <NavLink tag={Link} to="/applicable" className="text-dark">Other Movies</NavLink>
               </NavItem>
               <NavItem>
                 <a href="/Auth/Logout" className="text-dark">Logout</a>
