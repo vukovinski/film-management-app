@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export function Apply() {
+  const navigate = useNavigate();
   const { movieId } = useParams();
   const [fee, setFee] = useState(null);
   const [details, setDetails] = useState(null);
@@ -18,6 +19,19 @@ export function Apply() {
 
   }, [movieId]);
 
+  function confirmClick() {
+    fetch(`${hostname}/Actor/ApplyForMovie/${movieId}/${fee}`, {
+      method: "PUT", headers: {
+        "Authorization": sessionStorage.getItem("token")
+      }
+    })
+    .then(resp => {
+      if (resp.ok) {
+        navigate("/")
+      }
+    });
+  }
+
   return details && <div key={details.id} style={{ borderRadius: "10px", backgroundColor: "#DDDDDD", padding: "15px", marginBottom: "15px" }}>
     <h2>{details.title}</h2>
     <blockquote>{details.tagLine}</blockquote>
@@ -27,7 +41,7 @@ export function Apply() {
     <div style={{ display: "flex", flexDirection: "column", maxWidth: "250px" }}>
       <label>Desired fee</label>
       <input type="text" value={fee} onChange={(evt) => setFee(evt.target.value)} />
-      <button onClick={() => this.negotiateClick(details.id)}>Confirm</button>
+      <button onClick={confirmClick}>Confirm</button>
     </div>
   </div>
 }

@@ -8,12 +8,14 @@ namespace film_management_app.Controllers;
 [Route("[controller]")]
 public class ActorController : BaseAuthController
 {
+    private readonly IStarRepository _starRepository;
     private readonly IActorFilmsService _filmsService;
     private readonly IGenreRepository _genreRepository;
     private readonly IFeeNegotiationService _negotiationService;
 
-    public ActorController(IUserRepository userRepository, IGenreRepository genreRepository, IFeeNegotiationService feeNegotiationService, IActorFilmsService actorFilmsService, IHttpContextAccessor contextAccessor) : base(userRepository, contextAccessor)
+    public ActorController(IUserRepository userRepository, IGenreRepository genreRepository, IFeeNegotiationService feeNegotiationService, IActorFilmsService actorFilmsService, IStarRepository starRepository,  IHttpContextAccessor contextAccessor) : base(userRepository, contextAccessor)
     {
+        _starRepository = starRepository;
         _filmsService = actorFilmsService;
         _genreRepository = genreRepository;
         _negotiationService = feeNegotiationService;
@@ -120,6 +122,16 @@ public class ActorController : BaseAuthController
             FullName = starring.User.FullName,
             AcceptedRole = starring.AcceptedRole
         };
+    }
+
+    [HttpPut]
+    [Authorize]
+    [Route("ApplyForMovie/{filmId}/{fee}")]
+    public IActionResult ApplyForMovie(int filmId, decimal fee)
+    {
+        var star = new FilmStar { FilmId = filmId, UserId = AuthenticatedUser!.Id, Fee = fee };
+        _starRepository.CreateNew(star);
+        return Ok();
     }
 
     [HttpPut]
