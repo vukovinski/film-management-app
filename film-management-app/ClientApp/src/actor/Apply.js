@@ -4,6 +4,30 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 export function Apply() {
   const { movieId } = useParams();
+  const [fee, setFee] = useState(null);
+  const [details, setDetails] = useState(null);
 
-  return <div></div>
+  useEffect(() => {
+    fetch(`${hostname}/Actor/MovieDetails/${movieId}`, {
+      headers: {
+        "Authorization": sessionStorage.getItem("token")
+      }
+    })
+    .then(resp => resp.json())
+    .then(data => setDetails(data));
+
+  }, [movieId]);
+
+  return details && <div key={details.id} style={{ borderRadius: "10px", backgroundColor: "#DDDDDD", padding: "15px", marginBottom: "15px" }}>
+    <h2>{details.title}</h2>
+    <blockquote>{details.tagLine}</blockquote>
+    <p>Planned shooting: {details.plannedShootingStartDate} - {details.plannedShootingEndDate}</p>
+    <p>Planned budget: {details.budget} EUR</p>
+    <p>Actors: {details.actors.map(a => `${a.fullName} | `)}</p>
+    <div style={{ display: "flex", flexDirection: "column", maxWidth: "250px" }}>
+      <label>Desired fee</label>
+      <input type="text" value={fee} onChange={(evt) => setFee(evt.target.value)} />
+      <button onClick={() => this.negotiateClick(details.id)}>Confirm</button>
+    </div>
+  </div>
 }

@@ -38,6 +38,30 @@ public class ActorController : BaseAuthController
 
     [HttpGet]
     [Authorize]
+    [Route("MovieDetails/{movieId}")]
+    public FilmDto MovieDetails(int movieId)
+    {
+        var f = _filmsService.GetById(movieId);
+        return new FilmDto
+        {
+            Id = f.Id,
+            Title = f.Title,
+            TagLine = f.TagLine,
+            Budget = f.Budget,
+            Genres = f.Genres.Select(g => new GenreDto { Id = g.GenreId, Name = _genreRepository.GetById(g.GenreId).Name }).ToList(),
+            Director = new DirectorDto { Id = f.Director!.UserId, FullName = f.Director.User.FullName },
+            Actors = f.Actors.Select(a => new StarDto { ActorId = a.UserId, FullName = a.User.FullName, Fee = a.Fee, AcceptedRole = a.AcceptedRole }).ToList(),
+            Negotiations = f.FeeNegotiations.Select(fn => new FeeNegotiationDto { ActorId = fn.UserId, OldFee = fn.OldFee, NewFee = fn.NewFee }).ToList(),
+            HasBeenFilmed = f.HasBeenFilmed,
+            PlannedShootingStartDate = f.PlannedShootingStartDate.ToShortDateString(),
+            PlannedShootingEndDate = f.PlannedShootingEndDate.ToShortDateString(),
+            IsShootable = f.IsShootable,
+            IsOverBudget = f.IsOverBudget
+        };
+    }
+
+    [HttpGet]
+    [Authorize]
     [Route("MyMovies")]
     public IEnumerable<FilmDto> MyMovies()
     {

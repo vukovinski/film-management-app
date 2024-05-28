@@ -11,6 +11,11 @@
             _userRepository = userRepository;
         }
 
+        public Film GetById(int id)
+        {
+            return _filmRepository.GetById(id);
+        }
+
         public Film[] InvitedFilms(User actor)
         {
             return _filmRepository.GetByInvitedActor(actor).ToArray();

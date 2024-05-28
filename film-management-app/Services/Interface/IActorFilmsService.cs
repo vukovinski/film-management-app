@@ -2,6 +2,7 @@
 {
     public interface IActorFilmsService
     {
+        Film GetById(int id);
         Film[] MyFilms(User actor);
         Film[] OtherFilms(User actor);
         Film[] InvitedFilms(User actor);
